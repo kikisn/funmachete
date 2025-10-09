@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Optimization Page - Wireframe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            padding: 40px 20px;
+        }
+
+        .wireframe-container {
+            width: 1600px;
+            height: 900px;
+            margin: 0 auto;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 12-Column Grid Guide (hidden on final) */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1170px; /* (70px × 12) + (30px × 11) = 1170px */
+            height: 100%;
+            display: flex;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0; /* Hidden - just for reference */
+        }
+
+        .grid-column {
+            width: 70px;
+            height: 100%;
+            background: rgba(0, 150, 255, 0.1);
+            border-left: 1px solid rgba(0, 150, 255, 0.3);
+            margin-right: 30px;
+        }
+
+        .grid-column:last-child {
+            margin-right: 0;
+        }
+
+        /* Content Container */
+        .content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1170px;
+            height: 100%;
+            padding: 40px 0;
+        }
+
+        /* Header with Logo */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 150px;
+            height: 30px;
+            background: #d2312f;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 40px;
+        }
+
+        .tab {
+            width: 292.5px; /* (1170px / 4) */
+            height: 50px;
+            background: #f9f9f9;
+            border: 2px solid #333;
+            border-bottom: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: #666;
+            position: relative;
+        }
+
+        .tab:first-child {
+            border-right: none;
+        }
+
+        .tab:nth-child(2) {
+            border-right: none;
+        }
+
+        .tab:nth-child(3) {
+            border-right: none;
+            background: white;
+            color: #d2312f;
+        }
+
+        /* Project Title & Description */
+        .project-header {
+            margin-bottom: 35px;
+        }
+
+        .project-title {
+            width: 500px;
+            height: 40px;
+            background: #f0f0f0;
+            border: 2px solid #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            font-size: 11px;
+            color: #999;
+        }
+
+        .project-description {
+            width: 800px;
+            height: 60px;
+            background: #f9f9f9;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            font-size: 11px;
+            color: #999;
+            line-height: 1.4;
+        }
+
+        /* Device Mockups Section */
+        .devices-section {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: flex-end;
+        }
+
+        .device-mockup {
+            border: 3px solid #333;
+            background: white;
+            position: relative;
+        }
+
+        .mobile {
+            width: 170px;
+            height: 320px;
+            border-radius: 20px;
+        }
+
+        .mobile::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+        }
+
+        .tablet {
+            width: 280px;
+            height: 360px;
+            border-radius: 15px;
+        }
+
+        .tablet::before {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            border: 2px solid #333;
+            border-radius: 50%;
+        }
+
+        .desktop {
+            width: 450px;
+            height: 280px;
+            border-radius: 8px;
+            border-bottom: none;
+        }
+
+        .desktop::after {
+            content: '';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 25px;
+            background: white;
+            border: 3px solid #333;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .desktop::before {
+            content: '';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 8px;
+            background: #333;
+            z-index: 10;
+        }
+
+        .device-label {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        /* Interactive Elements Section */
+        .interactive-section {
+            margin-top: 70px;
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            width: 300px;
+            height: 30px;
+            background: #f0f0f0;
+            border: 2px solid #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            font-size: 10px;
+            color: #999;
+            font-weight: 600;
+        }
+
+        .interactive-demos {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .demo-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .demo-visual {
+            width: 260px;
+            height: 180px;
+            border: 2px solid #333;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .demo-visual::after {
+            content: 'INTERACTIVE\AELEMENT';
+            white-space: pre;
+            text-align: center;
+            font-size: 10px;
+            color: #ccc;
+            letter-spacing: 1px;
+        }
+
+        .button-demo {
+            width: 120px;
+            height: 45px;
+            background: white;
+            border: 2px solid #d2312f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: #d2312f;
+            position: absolute;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .demo-text {
+            width: 260px;
+            height: 50px;
+            background: #f9f9f9;
+            border: 2px solid #333;
+            padding: 8px 12px;
+            font-size: 9px;
+            color: #999;
+            line-height: 1.3;
+        }
+
+        /* Color Palette Section */
+        .palette-section {
+            margin-top: 35px;
+        }
+
+        .color-swatches {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .color-swatch {
+            width: 140px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .swatch-color {
+            width: 140px;
+            height: 100px;
+            border: 2px solid #333;
+        }
+
+        .swatch-primary {
+            background: #d2312f;
+        }
+
+        .swatch-secondary {
+            background: #8C7F80;
+        }
+
+        .swatch-accent {
+            background: #f4f1e8;
+        }
+
+        .swatch-dark {
+            background: #333333;
+        }
+
+        .swatch-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .swatch-label {
+            font-size: 9px;
+            font-weight: 600;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .swatch-hex {
+            font-size: 8px;
+            color: #999;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Annotations */
+        .annotation {
+            position: absolute;
+            font-size: 9px;
+            color: #0066cc;
+            background: white;
+            padding: 4px 8px;
+            border: 1px solid #0066cc;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        .ann-1 {
+            top: 80px;
+            right: -200px;
+        }
+
+        .ann-2 {
+            top: 280px;
+            left: -220px;
+        }
+
+        .ann-3 {
+            top: 480px;
+            right: -250px;
+        }
+
+        .ann-4 {
+            bottom: 150px;
+            left: -180px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe-container">
+        <!-- 12-Column Grid Overlay (hidden) -->
+        <div class="grid-overlay">
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+        </div>
+
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- Header -->
+            <div class="header">
+                <div class="logo">ANNA SASIL</div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tab-navigation">
+                <div class="tab">PROJECT 1</div>
+                <div class="tab">PROJECT 2</div>
+                <div class="tab">OPTIMIZATION</div>
+                <div class="tab">PROJECT 4</div>
+            </div>
+
+            <!-- Project Header -->
+            <div class="project-header">
+                <div class="project-title">Project Title - Website Name</div>
+                <div class="project-description">Brief project description explaining the optimization goals, challenges addressed, and key improvements made. This should be concise but informative about the project scope.</div>
+            </div>
+
+            <!-- Device Mockups -->
+            <div class="devices-section">
+                <div class="device-mockup mobile">
+                    <div class="device-label">Mobile</div>
+                </div>
+                <div class="device-mockup tablet">
+                    <div class="device-label">Tablet</div>
+                </div>
+                <div class="device-mockup desktop">
+                    <div class="device-label">Desktop</div>
+                </div>
+            </div>
+
+            <!-- Interactive Elements Section -->
+            <div class="interactive-section">
+                <div class="section-title">INTERACTIVE ELEMENTS & FEATURES</div>
+                <div class="interactive-demos">
+                    <div class="demo-item">
+                        <div class="demo-visual">
+                            <div class="button-demo">HOVER STATE</div>
+                        </div>
+                        <div class="demo-text">Description of button animation, hover effect, and interaction behavior</div>
+                    </div>
+                    <div class="demo-item">
+                        <div class="demo-visual">
+                            <div class="button-demo" style="animation-delay: 0.5s;">LOADING</div>
+                        </div>
+                        <div class="demo-text">Description of loading animation, transition states, and user feedback</div>
+                    </div>
+                    <div class="demo-item">
+                        <div class="demo-visual">
+                            <div class="button-demo" style="animation-delay: 1s;">SCROLL FX</div>
+                        </div>
+                        <div class="demo-text">Description of scroll-triggered animations and parallax effects used</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Color Palette Section -->
+            <div class="palette-section">
+                <div class="section-title">COLOR PALETTE</div>
+                <div class="color-swatches">
+                    <div class="color-swatch">
+                        <div class="swatch-color swatch-primary"></div>
+                        <div class="swatch-info">
+                            <div class="swatch-label">Primary</div>
+                            <div class="swatch-hex">#D2312F</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-color swatch-secondary"></div>
+                        <div class="swatch-info">
+                            <div class="swatch-label">Secondary</div>
+                            <div class="swatch-hex">#8C7F80</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-color swatch-accent"></div>
+                        <div class="swatch-info">
+                            <div class="swatch-label">Background</div>
+                            <div class="swatch-hex">#F4F1E8</div>
+                        </div>
+                    </div>
+                    <div class="color-swatch">
+                        <div class="swatch-color swatch-dark"></div>
+                        <div class="swatch-info">
+                            <div class="swatch-label">Text</div>
+                            <div class="swatch-hex">#333333</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Annotations -->
+            <div class="annotation ann-1">Tab navigation spans full width (12 columns)</div>
+            <div class="annotation ann-2">Device mockups sized proportionally</div>
+            <div class="annotation ann-3">Interactive demos show actual animations</div>
+            <div class="annotation ann-4">Color system with hex values</div>
+        </div>
+    </div>
+</body>
+</html>
